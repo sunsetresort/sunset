@@ -1,0 +1,158 @@
+<!-- 
+    <script>
+        function submitBookingForm(event, submissionType) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const place = document.getElementById('place').value;
+            const date = document.getElementById('date').value;
+            const paymentMethod = document.getElementById('payment_method').value;
+
+            let paymentDetails = '';
+            if (paymentMethod === 'credit_card') {
+                paymentDetails = \nCard Number: ${document.getElementById('card-number').value};
+            } else if (paymentMethod === 'jazz_cash') {
+                paymentDetails = \nJazz Cash Number: ${document.getElementById('jazz-cash-number').value};
+            } else if (paymentMethod === 'easy_paisa') {
+                paymentDetails = \nEasy Paisa Number: ${document.getElementById('easy-paisa-number').value};
+            }
+
+            const message = Booking Details:\nName: ${name}\nEmail: ${email}\nPhone Number: ${phone}\nPlace to Visit: ${place}\nTravel Date: ${date}\nPayment Method: ${paymentMethod}${paymentDetails};
+
+            if (submissionType === 'whatsapp') {
+                const whatsappNumber = '+923255612035';
+                const whatsappUrl = https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)};
+                window.location.href = whatsappUrl;
+            } else if (submissionType === 'email') {
+                document.getElementById('hidden-name').value = name;
+                document.getElementById('hidden-email').value = email;
+                document.getElementById('hidden-phone').value = phone;
+                document.getElementById('hidden-place').value = place;
+                document.getElementById('hidden-date').value = date;
+                document.getElementById('hidden-payment-method').value = paymentMethod;
+                document.getElementById('hidden-message').value = message;
+                document.getElementById('hidden-email-form').submit();
+            }
+        }
+
+        document.getElementById('phone').addEventListener('input', function () {
+            this.value = this.value.replace(/[^+0-9]/g, '');
+            if (!this.value.startsWith('+92')) {
+                this.value = '+92';
+            } else if (this.value.length > 13) {
+                this.value = this.value.slice(0, 13);
+            }
+        });
+
+        document.getElementById('jazz-cash-number').addEventListener('input', function () {
+            this.value = this.value.replace(/[^+0-9]/g, '');
+            if (!this.value.startsWith('+92')) {
+                this.value = '+92';
+            } else if (this.value.length > 13) {
+                this.value = this.value.slice(0, 13);
+            }
+        });
+
+        document.getElementById('easy-paisa-number').addEventListener('input', function () {
+            this.value = this.value.replace(/[^+0-9]/g, '');
+            if (!this.value.startsWith('+92')) {
+                this.value = '+92';
+            } else if (this.value.length > 13) {
+                this.value = this.value.slice(0, 13);
+            }
+        });
+
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const checkIn = params.get('checkIn');
+            const checkOut = params.get('checkOut');
+            const roomType = params.get('roomType');
+            const numCustomers = params.get('numCustomers');
+    
+            if (checkIn) document.getElementById('check-in').value = checkIn;
+            if (checkOut) document.getElementById('check-out').value = checkOut;
+            if (roomType) document.getElementById('room-type').value = roomType;
+            if (numCustomers) document.getElementById('numCustomers').value = numCustomers;
+    
+            const bookingForm = document.getElementById('bookingForm');
+            const submitButton = document.getElementById('submitButton');
+            const errorMessage = document.getElementById('errorMessage');
+    
+            const validateForm = function() {
+                const checkinDate = document.getElementById('check-in').value;
+                const checkoutDate = document.getElementById('check-out').value;
+                const roomType = document.getElementById('room-type').value;
+                const numCustomers = document.getElementById('numCustomers').value;
+    
+                if (checkinDate && checkoutDate && roomType && numCustomers) {
+                    submitButton.removeAttribute('disabled');
+                    errorMessage.style.display = 'none';
+                } else {
+                    submitButton.setAttribute('disabled', 'disabled');
+                    errorMessage.style.display = 'block';
+                }
+            };
+    
+            document.getElementById('check-in').addEventListener('change', validateForm);
+            document.getElementById('check-out').addEventListener('change', validateForm);
+            document.getElementById('room-type').addEventListener('change', validateForm);
+            document.getElementById('numCustomers').addEventListener('change', validateForm);
+    
+            validateForm();
+        });
+    </script>
+	<script>
+        document.getElementById('payment_method').addEventListener('change', function() {
+    // Hide all payment details sections
+    document.querySelectorAll('.payment-method-details').forEach(function(el) {
+        el.style.display = 'none';
+    });
+
+    // Get the selected payment method
+    const paymentMethod = this.value;
+
+    // Show the corresponding payment details section
+    if (paymentMethod === 'credit_card') {
+        document.getElementById('credit-card-details').style.display = 'block';
+    } else if (paymentMethod === 'jazz_cash') {
+        document.getElementById('jazz-cash-details').style.display = 'block';
+    } else if (paymentMethod === 'easy_paisa') {
+        document.getElementById('easy-paisa-details').style.display = 'block';
+    }
+});
+
+    </script>
+    <script>
+        function submitBookingForm(event, submissionType) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const place = document.getElementById('place').value;
+    const date = document.getElementById('date').value;
+    const paymentMethod = document.getElementById('payment_method').value;
+
+    let paymentDetails = '';
+    if (paymentMethod === 'credit_card') {
+        paymentDetails = `\nCard Number: ${document.getElementById('card-number').value}\nExpiry Date: ${document.getElementById('card-expiry').value}\nCVV: ${document.getElementById('card-cvv').value}`;
+    } else if (paymentMethod === 'jazz_cash') {
+        paymentDetails = `\nJazz Cash Number: ${document.getElementById('jazz-cash-number').value}`;
+    } else if (paymentMethod === 'easy_paisa') {
+        paymentDetails = `\nEasy Paisa Number: ${document.getElementById('easy-paisa-number').value}`;
+    }
+
+    const message = `Booking Details:\nName: ${name}\nEmail: ${email}\nPhone Number: ${phone}\nPlace to Visit: ${place}\nTravel Date: ${date}\nPayment Method: ${paymentMethod}${paymentDetails}`;
+
+    // Handle submission based on submissionType (whatsapp or email)
+    // ...
+}
+
+    </script> -->

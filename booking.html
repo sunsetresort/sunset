@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Booking Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2f4aa9;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #2f4aa9;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button i {
+            margin-right: 5px;
+        }
+
+        button:hover {
+            background-color: #162e32;
+        }
+
+        .payment-method-details {
+            display: none;
+        }
+
+        #errorMessage {
+            display: none;
+            color: red;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                width: 90%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+   
+
+<div class="form-container">
+    <a href="index.html" class="fas fa-home">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 11L12 2L21 11V22H14V14H10V22H3V11Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Home
+    </a>
+    <h2>Room Booking Form</h2>
+    <form id="bookingForm" method="post">
+        <div class="form-group">
+            <label for="name"><i class="fas fa-user"></i> Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone"><i class="fas fa-phone"></i> Phone:</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="+9212345678910" pattern="[+0-9]{13}" required>
+        </div>
+        <div class="form-group">
+            <label for="numCustomers"><i class="fas fa-users"></i> Number of Customers:</label>
+            <input type="number" id="numCustomers" name="numCustomers" required>
+        </div>
+        <div class="form-group">
+            <label for="room-type"><i class="fas fa-bed"></i> Room Type:</label>
+            <select id="room-type" name="room-type" required>
+                <option value="suite">Suite</option>
+                <option value="Family">Family Room</option>
+                <option value="Deluxe">Deluxe Room</option>
+                <option value="Classic">Classic Room</option>
+                <option value="Superior">Superior Room</option>
+                <option value="Luxury">Luxury Room</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="check-in"><i class="fas fa-calendar-check"></i> Check-in Date:</label>
+            <input type="date" id="check-in" name="check-in" required>
+        </div>
+        <div class="form-group">
+            <label for="check-out"><i class="fas fa-calendar-times"></i> Check-out Date:</label>
+            <input type="date" id="check-out" name="check-out" required>
+        </div>
+      
+        
+     <div class="form-group">
+            <label for="payment-method">Payment Method:</label>
+            <select class="form-control" id="payment_method" name="payment_method" onchange="handlePaymentMethodChange()" required>
+                <option value="">Select Payment Method</option>
+                <option value="credit_card">Credit Card</option>
+                <option value="jazz_cash">Jazz Cash</option>
+                <option value="easy_paisa">Easy Paisa</option>
+            </select>
+        </div>
+        <div id="credit-card-details" class="payment-method-details">
+            <div class="form-group">
+                <label for="card-number">Card Number:</label>
+                <input type="text" class="form-control" id="card-number" name="card_number">
+            </div>
+            <div class="form-group">
+                <label for="card-expiry">Expiry Date:</label>
+                <input type="month" class="form-control" id="card-expiry" name="card_expiry">
+            </div>
+            <div class="form-group">
+                <label for="card-cvv">CVV:</label>
+                <input type="text" class="form-control" id="card-cvv" name="card_cvv">
+            </div>
+        </div> 
+        <div id="jazz-cash-details" class="payment-method-details">
+            <div class="form-group">
+                <label for="jazz-cash-number">Jazz Cash Number:</label>
+                <input type="text" class="form-control" id="jazz-cash-number" name="jazz_cash_number" placeholder="+920000000000" pattern="[+0-9]{13}">
+            </div>
+        </div>
+        <div id="easy-paisa-details" class="payment-method-details">
+            <div class="form-group">
+                <label for="easy-paisa-number">Easy Paisa Number:</label>
+                <input type="text" class="form-control" id="easy-paisa-number" name="easy_paisa_number" placeholder="+920000000000" pattern="[+0-9]{13}">
+            </div>
+        </div>
+        <button type="button" class="btn-custom" onclick="submitFormViaEmail()">
+            Submit via Email <i class="fas fa-paper-plane"></i>
+        </button>
+        <button id="submitButton" type="button" class="btn-custom" onclick="submitFormViaWhatsApp()">
+            Submit via WhatsApp &nbsp;
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" width="20" height="20">
+        </button>
+    </form>
+    <p id="errorMessage">Please fill out all required fields.</p>
+</div>
+
+<!-- Hidden form for email submission -->
+<form id="hidden-email-form" action="https://api.web3forms.com/submit" method="POST" style="display: none;">
+    <input type="hidden" name="access_key" value="7e2347ce-354c-4e27-a097-f8ab082c7858"> <!-- Replace with your actual access key -->
+
+    <input type="hidden" id="hidden-name" name="name">
+    <input type="hidden" id="hidden-email" name="email">
+    <input type="hidden" id="hidden-phone" name="phone">
+    <input type="hidden" id="hidden-place" name="place">
+    <input type="hidden" id="hidden-date" name="date">
+    <input type="hidden" id="hidden-payment-method" name="payment_method">
+    <input type="hidden" id="hidden-message" name="message">
+</form>
+<script>
+    function handlePaymentMethodChange() {
+        const paymentMethod = document.getElementById('payment_method').value;
+
+        // Hide all payment details sections
+        document.querySelectorAll('.payment-method-details').forEach(el => {
+            el.style.display = 'none';
+        });
+
+        // Show the selected payment method details
+        if (paymentMethod === 'credit_card') {
+            document.getElementById('credit-card-details').style.display = 'block';
+
+            // Validate credit card number
+            const cardNumberInput = document.getElementById('card-number');
+            cardNumberInput.addEventListener('input', function (event) {
+                const cardNumber = event.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+                const formattedCardNumber = formatCreditCardNumber(cardNumber);
+                event.target.value = formattedCardNumber;
+                validateCreditCard(cardNumber);
+            });
+        } else if (paymentMethod === 'jazz_cash') {
+            document.getElementById('jazz-cash-details').style.display = 'block';
+        } else if (paymentMethod === 'easy_paisa') {
+            document.getElementById('easy-paisa-details').style.display = 'block';
+        }
+    }
+
+    function formatCreditCardNumber(cardNumber) {
+        // Format card number with spaces for better readability
+        const formatted = cardNumber.replace(/\s+/g, '').replace(/(\d{4})/g, '$1 ').trim();
+        return formatted;
+    }
+
+    function validateCreditCard(cardNumber) {
+        // Perform basic Luhn algorithm validation
+        const sanitized = cardNumber.replace(/\D/g, '');
+        if (/[^0-9-\s]+/.test(sanitized)) return false;
+
+        let sum = 0;
+        let shouldDouble = false;
+        for (let i = sanitized.length - 1; i >= 0; i--) {
+            let digit = parseInt(sanitized.charAt(i), 10);
+            if (shouldDouble) {
+                if ((digit *= 2) > 9) digit -= 9;
+            }
+            sum += digit;
+            shouldDouble = !shouldDouble;
+        }
+        return (sum % 10) === 0;
+    }
+
+    function submitFormViaEmail() {
+        if (validateForm()) {
+            const form = document.getElementById('bookingForm');
+            const formData = new FormData(form);
+            const message = createBookingMessage(formData);
+
+            document.getElementById('hidden-name').value = formData.get('name');
+            document.getElementById('hidden-email').value = formData.get('email');
+            document.getElementById('hidden-phone').value = formData.get('phone');
+            document.getElementById('hidden-place').value = formData.get('place');
+            document.getElementById('hidden-date').value = formData.get('date');
+            document.getElementById('hidden-payment-method').value = formData.get('payment_method');
+            document.getElementById('hidden-message').value = message;
+
+            document.getElementById('hidden-email-form').submit();
+        }
+    }
+
+    function submitFormViaWhatsApp() {
+        if (validateForm()) {
+            const form = document.getElementById('bookingForm');
+            const formData = new FormData(form);
+            const message = createBookingMessage(formData);
+
+            const whatsappNumber = '+923155613507'; // Replace with your WhatsApp number
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    }
+
+    function createBookingMessage(formData) {
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const phone = formData.get('phone');
+        const checkIn = formData.get('check-in');
+        const checkOut = formData.get('check-out');
+        const roomType = formData.get('room-type');
+        const numCustomers = formData.get('numCustomers');
+        const paymentMethod = formData.get('payment_method');
+        let paymentDetails = '';
+
+        if (paymentMethod === 'credit_card') {
+            paymentDetails = `\nCard Number: ${formData.get('card_number')}\nExpiry Date: ${formData.get('card_expiry')}\nCVV: ${formData.get('card_cvv')}`;
+        } else if (paymentMethod === 'jazz_cash') {
+            paymentDetails = `\nJazz Cash Number: ${formData.get('jazz_cash_number')}`;
+        } else if (paymentMethod === 'easy_paisa') {
+            paymentDetails = `\nEasy Paisa Number: ${formData.get('easy_paisa_number')}`;
+        }
+
+        const message = `Booking Details:\nName: ${name}\nEmail: ${email}\nPhone Number: ${phone}\nCheck-in Date: ${checkIn}\nCheck-out Date: ${checkOut}\nRoom Type: ${roomType}\nNumber of Customers: ${numCustomers}\nPayment Method: ${paymentMethod}${paymentDetails}`;
+
+        return message;
+    }
+
+    function validateForm() {
+        const checkinDate = document.getElementById('check-in').value;
+        const checkoutDate = document.getElementById('check-out').value;
+        const roomType = document.getElementById('room-type').value;
+        const numCustomers = document.getElementById('numCustomers').value;
+        const paymentMethod = document.getElementById('payment_method').value;
+
+        if (checkinDate && checkoutDate && roomType && numCustomers && paymentMethod) {
+            document.getElementById('submitButton').removeAttribute('disabled');
+            document.getElementById('errorMessage').style.display = 'none';
+            return true;
+        } else {
+            document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+            document.getElementById('errorMessage').style.display = 'block';
+            return false;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const params = new URLSearchParams(window.location.search);
+        const checkIn = params.get('checkIn');
+        const checkOut = params.get('checkOut');
+        const roomType = params.get('roomType');
+        const numCustomers = params.get('numCustomers');
+
+        if (checkIn) document.getElementById('check-in').value = checkIn;
+        if (checkOut) document.getElementById('check-out').value = checkOut;
+        if (roomType) document.getElementById('room-type').value = roomType;
+        if (numCustomers) document.getElementById('numCustomers').value = numCustomers;
+
+        const bookingForm = document.getElementById('bookingForm');
+
+        bookingForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            submitFormViaEmail();
+        });
+
+        const submitButton = document.getElementById('submitButton');
+
+        submitButton.addEventListener('click', function () {
+            submitFormViaWhatsApp();
+        });
+
+        const errorMessage = document.getElementById('errorMessage');
+
+        const validateForm = function () {
+            const checkinDate = document.getElementById('check-in').value;
+            const checkoutDate = document.getElementById('check-out').value;
+            const roomType = document.getElementById('room-type').value;
+            const numCustomers = document.getElementById('numCustomers').value;
+
+            if (checkinDate && checkoutDate && roomType && numCustomers) {
+                submitButton.removeAttribute('disabled');
+                errorMessage.style.display = 'none';
+                return true;
+            } else {
+                submitButton.setAttribute('disabled', 'disabled');
+                errorMessage.style.display = 'block';
+                return false;
+            }
+        };
+
+        document.getElementById('check-in').addEventListener('change', validateForm);
+        document.getElementById('check-out').addEventListener('change', validateForm);
+        document.getElementById('room-type').addEventListener('change', validateForm);
+        document.getElementById('numCustomers').addEventListener('change', validateForm);
+        document.getElementById('payment_method').addEventListener('change', handlePaymentMethodChange);
+
+        validateForm();
+    });
+
+    document.getElementById('phone').addEventListener('input', function () {
+        this.value = this.value.replace(/[^+0-9]/g, '');
+        if (!this.value.startsWith('+92')) {
+            this.value = '+92';
+        } else if (this.value.length > 13) {
+            this.value = this.value.slice(0, 13);
+        }
+    });
+
+    document.getElementById('jazz-cash-number').addEventListener('input', function () {
+        this.value = this.value.replace(/[^+0-9]/g, '');
+        if (!this.value.startsWith('+92')) {
+            this.value = '+92';
+        } else if (this.value.length > 13) {
+            this.value = this.value.slice(0, 13);
+        }
+    });
+
+    document.getElementById('easy-paisa-number').addEventListener('input', function () {
+        this.value = this.value.replace(/[^+0-9]/g, '');
+        if (!this.value.startsWith('+92')) {
+            this.value = '+92';
+        } else if (this.value.length > 13) {
+            this.value = this.value.slice(0, 13);
+        }
+    });
+</script>
+
+ <script>
+
+function handlePaymentMethodChange() {
+    var paymentMethod = document.getElementById('payment_method').value;
+    var creditCardDetails = document.getElementById('credit-card-details');
+
+    if (paymentMethod === 'credit_card') {
+        // Show credit card details section
+        creditCardDetails.style.display = 'block';
+
+        // Validate credit card number
+        var cardNumberInput = document.getElementById('card-number');
+        cardNumberInput.addEventListener('input', function (event) {
+            var cardNumber = event.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+            var formattedCardNumber = formatCreditCardNumber(cardNumber);
+            event.target.value = formattedCardNumber;
+            validateCreditCard(cardNumber);
+        });
+    } else {
+        // Hide credit card details section
+        creditCardDetails.style.display = 'none';
+    }
+}
+
+function formatCreditCardNumber(cardNumber) {
+    // Format card number with spaces for better readability
+    var formatted = cardNumber.replace(/\s+/g, '').replace(/(\d{4})/g, '$1 ').trim();
+    return formatted;
+}
+
+function validateCreditCard(cardNumber) {
+    // Perform basic Luhn algorithm validation
+    var sanitized = cardNumber.replace(/\D/g, '');
+    if (/[^0-9-\s]+/.test(sanitized)) return false;
+
+    var sum = 0;
+    var shouldDouble = false;
+    for (var i = sanitized.length - 1; i >= 0; i--) {
+        var digit = parseInt(sanitized.charAt(i), 10);
+        if (shouldDouble) {
+            if ((digit *= 2) > 9) digit -= 9;
+        }
+        sum += digit;
+        shouldDouble = !shouldDouble;
+    }
+    return (sum % 10) === 0;
+}
+
+    function handlePaymentMethodChange() {
+        const paymentMethod = document.getElementById('payment_method').value;
+
+        // Hide all payment details sections
+        document.querySelectorAll('.payment-method-details').forEach(el => {
+            el.style.display = 'none';
+        });
+
+        // Show the selected payment method details
+        if (paymentMethod === 'credit_card') {
+            document.getElementById('credit-card-details').style.display = 'block';
+        } else if (paymentMethod === 'jazz_cash') {
+            document.getElementById('jazz-cash-details').style.display = 'block';
+        } else if (paymentMethod === 'easy_paisa') {
+            document.getElementById('easy-paisa-details').style.display = 'block';
+        }
+    }
+
+    function submitFormViaEmail() {
+        if (validateForm()) {
+            const form = document.getElementById('bookingForm');
+            const formData = new FormData(form);
+            const message = createBookingMessage(formData);
+
+            document.getElementById('hidden-name').value = formData.get('name');
+            document.getElementById('hidden-email').value = formData.get('email');
+            document.getElementById('hidden-phone').value = formData.get('phone');
+            document.getElementById('hidden-place').value = formData.get('place');
+            document.getElementById('hidden-date').value = formData.get('date');
+            document.getElementById('hidden-payment-method').value = formData.get('payment_method');
+            document.getElementById('hidden-message').value = message;
+
+            document.getElementById('hidden-email-form').submit();
+        }
+    }
+
+    function submitFormViaWhatsApp() {
+        if (validateForm()) {
+            const form = document.getElementById('bookingForm');
+            const formData = new FormData(form);
+            const message = createBookingMessage(formData);
+
+            const whatsappNumber = '+923155613507'; // Replace with your WhatsApp number
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    }
+
+    function createBookingMessage(formData) {
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const phone = formData.get('phone');
+        const checkIn = formData.get('check-in');
+        const checkOut = formData.get('check-out');
+        const roomType = formData.get('room-type');
+        const numCustomers = formData.get('numCustomers');
+        const paymentMethod = formData.get('payment_method');
+        let paymentDetails = '';
+
+        if (paymentMethod === 'credit_card') {
+            paymentDetails = `\nCard Number: ${formData.get('card_number')}\nExpiry Date: ${formData.get('card_expiry')}\nCVV: ${formData.get('card_cvv')}`;
+        } else if (paymentMethod === 'jazz_cash') {
+            paymentDetails = `\nJazz Cash Number: ${formData.get('jazz_cash_number')}`;
+        } else if (paymentMethod === 'easy_paisa') {
+            paymentDetails = `\nEasy Paisa Number: ${formData.get('easy_paisa_number')}`;
+        }
+
+        const message = `Booking Details:\nName: ${name}\nEmail: ${email}\nPhone Number: ${phone}\nCheck-in Date: ${checkIn}\nCheck-out Date: ${checkOut}\nRoom Type: ${roomType}\nNumber of Customers: ${numCustomers}\nPayment Method: ${paymentMethod}${paymentDetails}`;
+
+        return message;
+    }
+
+    function validateForm() {
+        const checkinDate = document.getElementById('check-in').value;
+        const checkoutDate = document.getElementById('check-out').value;
+        const roomType = document.getElementById('room-type').value;
+        const numCustomers = document.getElementById('numCustomers').value;
+        const paymentMethod = document.getElementById('payment_method').value;
+
+        if (checkinDate && checkoutDate && roomType && numCustomers && paymentMethod) {
+            document.getElementById('submitButton').removeAttribute('disabled');
+            document.getElementById('errorMessage').style.display = 'none';
+            return true;
+        } else {
+            document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+            document.getElementById('errorMessage').style.display = 'block';
+            return false;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const params = new URLSearchParams(window.location.search);
+        const checkIn = params.get('checkIn');
+        const checkOut = params.get('checkOut');
+        const roomType = params.get('roomType');
+        const numCustomers = params.get('numCustomers');
+
+        if (checkIn) document.getElementById('check-in').value = checkIn;
+        if (checkOut) document.getElementById('check-out').value = checkOut;
+        if (roomType) document.getElementById('room-type').value = roomType;
+        if (numCustomers) document.getElementById('numCustomers').value = numCustomers;
+
+        const bookingForm = document.getElementById('bookingForm');
+
+        bookingForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            submitFormViaEmail();
+        });
+
+        const submitButton = document.getElementById('submitButton');
+
+        submitButton.addEventListener('click', function () {
+            submitFormViaWhatsApp();
+        });
+
+        const errorMessage = document.getElementById('errorMessage');
+
+        const validateForm = function () {
+            const checkinDate = document.getElementById('check-in').value;
+            const checkoutDate = document.getElementById('check-out').value;
+            const roomType = document.getElementById('room-type').value;
+            const numCustomers = document.getElementById('numCustomers').value;
+
+            if (checkinDate && checkoutDate && roomType && numCustomers) {
+                submitButton.removeAttribute('disabled');
+                errorMessage.style.display = 'none';
+                return true;
+            } else {
+                submitButton.setAttribute('disabled', 'disabled');
+                errorMessage.style.display = 'block';
+                return false;
+            }
+        };
+
+        document.getElementById('check-in').addEventListener('change', validateForm);
+        document.getElementById('check-out').addEventListener('change', validateForm);
+        document.getElementById('room-type').addEventListener('change', validateForm);
+        document.getElementById('numCustomers').addEventListener('change', validateForm);
+        document.getElementById('payment_method').addEventListener('change', handlePaymentMethodChange);
+
+        validateForm();
+    });
+
+    document.getElementById('phone').addEventListener('input', function () {
+        this.value = this.value.replace(/[^+0-9]/g, '');
+        if (!this.value.startsWith('+92')) {
+            this.value = '+92';
+        } else if (this.value.length > 13) {
+            this.value = this.value.slice(0, 13);
+        }
+    });
+
+    document.getElementById('jazz-cash-number').addEventListener('input', function () {
+        this.value = this.value.replace(/[^+0-9]/g, '');
+        if (!this.value.startsWith('+92')) {
+            this.value = '+92';
+        } else if (this.value.length > 13) {
+            this.value = this.value.slice(0, 13);
+        }
+    });
+
+    document.getElementById('easy-paisa-number').addEventListener('input', function () {
+        this.value = this.value.replace(/[^+0-9]/g, '');
+        if (!this.value.startsWith('+92')) {
+            this.value = '+92';
+        } else if (this.value.length > 13) {
+            this.value = this.value.slice(0, 13);
+        }
+    });
+</script> 
+
+</body>
+</html>

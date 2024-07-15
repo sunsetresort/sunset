@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Resort Booking</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      #footer{
+    background: #f7f7f7;
+      padding: 3rem;
+    /* padding-top: 5rem; */
+    padding-top: 7rem;
+      padding-bottom: 80px;
+    background-color: #000107;
+  }
+  #footer2{
+    background: #f7f7f7;
+      padding: 3rem;
+      margin-top: 0px;
+    /* padding-top: 5rem; */
+    padding-top: 7rem;
+      padding-bottom: 80px;
+    background-image: url(../images/cards/v748-toon-111.png);
+  }
+  
+  
+  .social-links h2{
+    padding-bottom: 15px;
+    font-size: 20px;
+      font-weight: 600;
+  }
+  .social-links img{
+    padding-bottom: 25px;
+  }
+  .social-icons{
+    /* display: flex;
+      gap: 3rem; */
+    display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    color: #777777;
+  }
+  .social-icons a{
+    /* font-size: 18px; */
+      /* background: #ffffff; */
+      /* box-shadow: rgb(0 0 0 / 8%) 0px 4px 12px;
+      padding: 0.4rem 1rem 0.4rem 1rem;
+      border-radius: 3px;
+    color: #82074a; */
+    /* margin-right: 18px; */
+    color: #777777;
+  }
+  .social-icons a:hover{
+    color: #000;
+  }
+  .social-icons a i{
+    box-shadow: rgb(0 0 0 / 8%) 0px 4px 12px;
+      padding: 0.4rem 1rem 0.4rem 1rem;
+      border-radius: 3px;
+      color: #82074a;
+    font-size: 16px;
+    margin-right: 12px;
+  }
+  li{
+    list-style: none;
+  }
+  .useful-link h2{
+    padding-bottom: 15px;
+    font-size: 20px;
+      font-weight: 600;
+  }
+  .useful-link img{
+    padding-bottom: 15px;
+  }
+  .use-links{
+    line-height: 32px;
+  }
+  .use-links li i{
+    font-size: 14px;
+      padding-right: 8px;
+      color: #898989;
+  }
+  .use-links li a{
+    color: #303030;
+      font-size: 15px;
+      font-weight: 500;
+    color: #777777;
+  }
+  .use-links li a:hover{
+    color: #000;
+  }
+  .address h2{
+    padding-bottom: 15px;
+    font-size: 20px;
+      font-weight: 600;
+  }
+  .address img{
+    padding-bottom: 15px;
+  }
+  .address-links li a{
+    color: #303030;
+      font-size: 15px;
+      font-weight: 500;
+    color: #777777;
+  
+  }
+  .address-links li i{
+    font-size: 16px;
+      padding-right: 8px;
+    color: #82074a;
+  
+  }
+  .address-links li i:nth-child(1){
+    padding-top: 9px;
+  }
+  .address-links .address1{
+    font-weight: 500;
+      font-size: 15px;
+    display: flex;
+  }
+  .address-links{
+        line-height: 32px;
+      color: #777777;
+  }
+  .copy-right-sec{
+    padding: 1.8rem;
+      background: #82074a;
+      color: #fff;
+      text-align: center;
+  }
+  .copy-right-sec a{
+    color: #fcd462;
+      font-weight: 500;
+  }
+  a{
+    text-decoration:none;
+  }
+          .single-cta i {
+            color: #ff5e14;
+            font-size: 30px;
+            float: left;
+            margin-top: 8px;
+          }
+          .cta-text {
+            padding-left: 15px;
+            display: inline-block;
+          }
+          .cta-text h4 {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 2px;
+          }
+          .cta-text span {
+            color: #757575;
+            font-size: 15px;
+          }
+          .subscribe-form {
+            position: relative;
+            overflow: hidden;
+          }
+          .subscribe-form input {
+            width: 100%;
+            padding: 14px 28px;
+            background: #2E2E2E;
+            border: 1px solid #2E2E2E;
+            color: #fff;
+          }
+          .subscribe-form button {
+              position: absolute;
+              right: 0;
+              background: #ff5e14;
+              padding: 13px 20px;
+              border: 1px solid #ff5e14;
+              top: 0;
+          }
+          .subscribe-form button i {
+            color: #fff;
+            font-size: 22px;
+            transform: rotate(-6deg);
+          }
+          .copyright-area{
+            background: #202020;
+            padding: 25px 0;
+          }
+          .copyright-text p {
+            margin: 0;
+            font-size: 14px;
+            color: #878787;
+          }
+          .copyright-text p a{
+            color: #ff5e14;
+          }
+          
+    </style>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html">SUNSET Resort</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="rooms.html" class="nav-link">Rooms</a></li>
+	          <li class="nav-item"><a href="restaurant.html" class="nav-link">Restaurant</a></li>
+	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+	          <li class="nav-item active"><a href="contact.html" class="nav-link">Contact Us</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+
+    <div class="hero-wrap" style="background-image: url('images/bg_1.jpg');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
+          <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+          	<div class="text">
+	            <p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home</a></span> <span>Contact</span></p>
+	            <h1 class="mb-4 bread">Contact Us</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact">
+      <div class="container">
+          <div class="section-header text-center">
+              <p>Contact Us</p>
+          </div>
+          <div class="row align-items-center contact-information">
+              <div class="col-md-6 col-lg-3">
+                  <div class="contact-info">
+                      <div class="contact-icon">
+                          <i class="fa fa-map-marker-alt"></i>
+                      </div>
+                      <div class="contact-text">
+                          <h3>Address</h3>
+                          <p>MIrpur azad kashmir</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-6 col-lg-3">
+                  <div class="contact-info">
+                      <div class="contact-icon">
+                          <i class="fa fa-phone-alt"></i>
+                      </div>
+                      <div class="contact-text">
+                          <h3>Call Us</h3>
+                          <p>+923155613507</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-6 col-lg-3">
+                  <div class="contact-info">
+                      <div class="contact-icon">
+                          <i class="fa fa-envelope"></i>
+                      </div>
+                      <div class="contact-text">
+                          <h3>Email Us</h3>
+                          <p>hinakanwal2006@gmail.com</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-6 col-lg-3">
+                  <div class="contact-info">
+                      <div class="contact-icon">
+                          <i class="fa fa-share"></i>
+                      </div>
+                      <div class="contact-text">
+                          <h3>Follow Us</h3>
+                          <div class="contact-social">
+                          <a href="#"><span class="icon-google"></span>&nbsp;&nbsp;&nbsp;</a>
+                          <a href="https://www.facebook.com/profile.php?id=61562373932494&mibextid=ZbWKwL"><span class="icon-facebook"></span>&nbsp;&nbsp;&nbsp;</a>
+                          <a href="https://www.instagram.com/resort_sunset?igsh=aGs1NnZnd244b3Jq"><span class="icon-instagram"></span>&nbsp;&nbsp;&nbsp;</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          
+          <div class="row contact-form">
+              <div class="col-md-6">
+
+              
+                  <iframe  height="300" width="450px" frameborder="0" scrolling="no"
+                      marginheight="0" marginwidth="0" 
+                      src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=mirpur%20+(pizza)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/">gps vehicle tracker</a></iframe>
+                  </div>
+
+             
+
+                  <div class="col-md-6">
+                    <div id="success"></div>
+                    
+     <form action="https://api.web3forms.com/submit" method="POST">
+
+
+          <input type="hidden" name="access_key" value="66693a84-5ca9-4085-a49b-7aa9569ee568">
+                    <!-- <form name="sentMessage" id="contactForm" novalidate="novalidate">/ -->
+                        <div class="control-group">
+                            <input type="text" class="form-control" id="name" name="name"
+                             placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="email" class="form-control" id="email"  name="email"
+                            placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    
+                       <div class="control-group">
+                          <input required type="text" class="form-control"  id="phone" name="phone" 
+                         placeholder="+92xxxxxxxxxx" maxlength="13">
+
+                
+                      
+                      
+                   
+                            <p class="help-block text-danger"></p> 
+
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" id="subject" name="subject"
+                             placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <textarea class="form-control" id="message" name="message"
+                            placeholder="Message" required="required" 
+                            data-validation-required-message="Please enter your message"></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div>
+                            <button class="btn custom-btn" type="submit"
+                             id="sendMessageButton" style="background-color: #765d39; ;" >Send Message</button><br><br>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+<br><br>
+                     
+    <!-- Footer End -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    
+    <script>
+        // JavaScript to validate and format Pakistani phone number
+        document.getElementById('phone').addEventListener('input', function () {
+          let phoneNumber = this.value.trim(); // Trim any leading or trailing whitespace
+          
+          // Remove any non-+ or non-digit characters
+          phoneNumber = phoneNumber.replace(/[^+0-9]/g, '');
+          
+          // Check if it starts with +92
+          if (!phoneNumber.startsWith('+92')) {
+            if (phoneNumber.startsWith('92')) {
+              phoneNumber = '+' + phoneNumber; // Add + if user enters 92 without +
+            } else {
+              phoneNumber = '+92'; // Default to +92 if doesn't start with +92 or 92
+            }
+          }
+          
+          // Limit to maximum 13 characters (including the +)
+          if (phoneNumber.length > 13) {
+            phoneNumber = phoneNumber.slice(0, 13);
+          }
+          
+          // Update the input value
+          this.value = phoneNumber;
+        });
+      </script>
+          </div>
+
+          <div class="col-md-6 d-flex">
+          	<div id="map" class="bg-white"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h5 style="color: #f4f4f4;">SUNSET RESORT</h5>
+            <a href="index.html"><img src="images/logo.jpeg" alt="" class="img-fluid logo-footer" style="width: 100px;background-color: #000;"></a>
+            <br>
+            <div class="footer-about">
+              <p></p>
+            </div>
+  
+          </div>
+          <div class="col-md-3">
+            <div class="useful-link">
+              <h2 style="color: #f4f4f4;">Useful Links</h2>
+              <img src="./assets/images/about/home_line.png" alt="" class="img-fluid">
+              <div class="use-links">
+                <li><a href="index.html"><i class="fa-solid fa-angles-right"><span class=""></span></i> Home</a></li>
+                <li><a href="rooms.html"><i class="fa-solid fa-angles-right"></i> Rooms</a></li>
+                <li><a href="about.html"><i class="fa-solid fa-angles-right"><span class=""></span></i> About Us</a></li>
+                <li><a href="contact.html"><i class="fa-solid fa-angles-right"><span class=""></span></i> Contact</a></li>
+              </div>
+            </div>
+  
+          </div>
+          <div class="col-md-3">
+            <div class="social-links">
+              <h2 style="color: #f4f4f4;">Follow Us</h2>
+              <img src="./assets/images/about/home_line.png" alt="">
+              <div class="social-icons">
+                <li class="ftco-animate"><a href="https://www.facebook.com/profile.php?id=61562373932494&mibextid=ZbWKwL"><span class="icon-facebook"></span> &nbsp;&nbsp;facebook</a></li>
+							<li class="ftco-animate"><a href="https://www.instagram.com/resort_sunset?igsh=aGs1NnZnd244b3Jq"><span class="icon-instagram"></span> &nbsp;&nbsp;instagram</a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-whatsapp"></span> &nbsp;&nbsp;WhatsApp</a></li>
+              </div>
+            </div>
+          
+  
+          </div>
+          <div class="col-md-3">
+            <div class="address">
+              <h2 style="color: #f4f4f4;"><span class="icon-address"></span>Address</h2>
+              <img src="./assets/images/about/home_line.png" alt="" class="img-fluid">
+              <div class="address-links">
+                <li class="address1"><i class="fa-solid fa-location-dot"></i>Mirpur azad kashmir 
+                   near by azad maga mart</li>
+                   <li><a href=""><i class="fa-solid fa-phone"></i> +923791694696</a></li>
+                   <li><a href=""><i class="fa-solid fa-envelope"></i>hinakanwal2006@gmail.com</a></li>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+  
+    </footer>
+    
+  
+  
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+    
+    
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="js/google-map.js"></script>
+    <script src="js/main.js"></script>
+      
+    </body>
+    </html>
+  
+
+ 
